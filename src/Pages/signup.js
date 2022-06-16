@@ -2,9 +2,12 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Actions/addUser";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isAge, setIsAge] = useState(false);
   const [signupUser, setSignupUser] = useState({
     id: "",
     firstname: "",
@@ -13,14 +16,23 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+
   const handleInput = (e) => {
     const value = e.target.value;
+    if (e.target.name === "age") {
+      if (e.target.value > 18) {
+        setIsAge(false);
+      } else {
+        setIsAge(true);
+      }
+    }
     setSignupUser({
       ...signupUser,
       id: uuidv4(),
       [e.target.name]: value,
     });
   };
+
   const handleSignupUser = (e) => {
     e.preventDefault();
     dispatch(addUser(signupUser));
@@ -32,13 +44,14 @@ const SignUp = () => {
       email: "",
       password: "",
     });
+    navigate("/login");
   };
   const { id, firstname, lastname, age, email, password } = signupUser;
   return (
     <>
       <div className="form-section">
         <div className="form-container">
-          <h1>Signup Form</h1>
+          <h1 className="heading">Signup</h1>
           <form className="form" onSubmit={handleSignupUser}>
             <input
               className="input"
@@ -87,6 +100,9 @@ const SignUp = () => {
                   handleInput(e);
                 }}
               ></input>
+              {isAge && (
+                <span className="error-msg">Age have must greater than 18</span>
+              )}
             </div>
             <div className="input-group">
               <label className="label">Enter your Email:</label>
@@ -116,8 +132,11 @@ const SignUp = () => {
                 }}
               ></input>
             </div>
-            <button className="button">Submit</button>
+            <button className="button">SignUp</button>
           </form>
+          <div className="last-line">
+            Already signup login here <Link to="/login">login</Link>
+          </div>
         </div>
       </div>
     </>
