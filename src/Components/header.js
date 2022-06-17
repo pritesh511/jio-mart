@@ -22,9 +22,9 @@ const Header = () => {
   const navigate = useNavigate();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
   const CartItem = useSelector(
-    (state) => state.productCartReducers.producrCart
+    (state) => state.productCartReducers.productCart
   );
-  const countCartItem = CartItem.length;
+  const countCartItem = CartItem?.length;
   return (
     <>
       <div className="header">

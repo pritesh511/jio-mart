@@ -2,12 +2,13 @@ import Header from "../Components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeAllItems } from "../Actions/removeAllItems";
+import { incrementItem } from "../Actions/incrementItem";
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const CartItemList = useSelector(
-    (state) => state.productCartReducers.producrCart
+    (state) => state.productCartReducers.productCart
   );
   return (
     <>

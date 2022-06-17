@@ -28,6 +28,11 @@ const Dashboard = () => {
                   >
                     Add to card
                   </button>
+                  <div className="btn-group">
+                    <div className="btn">+</div>
+                    <span className="price">5</span>
+                    <div className="btn">-</div>
+                  </div>
                 </div>
               </div>
             );
