@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
+import { productCart } from "../Actions/addToCart";
 import Header from "../Components/header";
 import { products } from "../Data/productData";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   return (
     <>
       <Header />
@@ -17,7 +20,14 @@ const Dashboard = () => {
                   <p className="product-para">{item?.name}</p>
                   <span className="price">Price : ₹ {item?.price} </span>
                   <span className="mrp">MRP : ₹ {item?.mrp}</span>
-                  <button className="add-button">Add to card</button>
+                  <button
+                    className="add-button"
+                    onClick={() => {
+                      dispatch(productCart(item));
+                    }}
+                  >
+                    Add to card
+                  </button>
                 </div>
               </div>
             );

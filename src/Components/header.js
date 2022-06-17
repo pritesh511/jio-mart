@@ -21,6 +21,10 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
+  const CartItem = useSelector(
+    (state) => state.productCartReducers.producrCart
+  );
+  const countCartItem = CartItem.length;
   return (
     <>
       <div className="header">
@@ -39,7 +43,7 @@ const Header = () => {
           </li>
           <li>
             <IconButton aria-label="cart">
-              <StyledBadge badgeContent={4} color="secondary">
+              <StyledBadge badgeContent={countCartItem} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
