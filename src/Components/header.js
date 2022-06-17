@@ -6,7 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../Actions/logOut";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -42,11 +42,13 @@ const Header = () => {
             </div>
           </li>
           <li>
-            <IconButton aria-label="cart">
-              <StyledBadge badgeContent={countCartItem} color="secondary">
-                <ShoppingCartIcon />
-              </StyledBadge>
-            </IconButton>
+            <Link to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={countCartItem} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
+            </Link>
           </li>
           <li>
             <div

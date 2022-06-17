@@ -10,6 +10,8 @@ const productCartReducers = (state = intialState, action) => {
         ...state,
         producrCart: [...state.producrCart, product],
       };
+    case "REMOVE_ALL_ITEMS":
+      return intialState;
     default:
       return state;
   }
