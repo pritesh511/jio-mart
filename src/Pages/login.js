@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { currentUser } from "../Actions/currentUser";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -25,6 +27,7 @@ const Login = () => {
       (item, index) =>
         item?.email === userInfo?.email && item?.password && userInfo?.password
     );
+    dispatch(currentUser(userInfo));
     if (isUserCheck?.length === 1) {
       navigate("/dashboard");
     }

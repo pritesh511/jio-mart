@@ -7,13 +7,15 @@ const intialState = {
 const CurretUserReducer = (state = intialState, action) => {
   switch (action.type) {
     case "CURRENT_USER":
-      const { email, password } = action.payload.user;
+      const { email, password } = action.payload;
       return {
         ...state,
         email: email,
         password: password,
         isLoggedIn: true,
       };
+    case "LOG_OUT":
+      return intialState;
     default:
       return state;
   }
