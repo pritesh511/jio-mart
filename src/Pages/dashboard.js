@@ -1,5 +1,11 @@
+import Header from "../Components/header";
+
 const Dashboard = () => {
-  return <>Dashboard Screen</>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Dashboard;

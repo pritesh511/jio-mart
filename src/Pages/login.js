@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
+
+  const getAllUser = useSelector((state) => state.AddUserReducers.user);
 
   const handleUserInfo = (e) => {
     const value = e.target.value;
@@ -17,6 +21,13 @@ const Login = () => {
 
   const handleUserLoginInfo = (e) => {
     e.preventDefault();
+    const isUserCheck = getAllUser.filter(
+      (item, index) =>
+        item?.email === userInfo?.email && item?.password && userInfo?.password
+    );
+    if (isUserCheck?.length === 1) {
+      navigate("/dashboard");
+    }
     setUserInfo({
       email: "",
       password: "",
