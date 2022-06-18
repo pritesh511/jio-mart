@@ -1,8 +1,10 @@
 import Header from "../Components/header";
 import { useDispatch, useSelector } from "react-redux";
+import { productCart } from "../Actions/addToCart";
 import { useNavigate } from "react-router-dom";
 import { removeAllItems } from "../Actions/removeAllItems";
 import emptyImage from "../Images/empty_image.png";
+import { decrementItem } from "../Actions/decrementItem";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -51,6 +53,25 @@ const Cart = () => {
                     <p className="product-para">{item?.name}</p>
                     <span className="price">Price : ₹ {item?.price} </span>
                     <span className="mrp">MRP : ₹ {item?.mrp}</span>
+                    <div className="btn-group">
+                      <div
+                        className="btn"
+                        onClick={() => {
+                          dispatch(productCart(item));
+                        }}
+                      >
+                        +
+                      </div>
+                      <span className="qty">{item?.qty}</span>
+                      <div
+                        className="btn"
+                        onClick={() => {
+                          dispatch(decrementItem(item));
+                        }}
+                      >
+                        -
+                      </div>
+                    </div>
                   </div>
                 </li>
               );
