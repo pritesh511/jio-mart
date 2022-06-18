@@ -32,17 +32,31 @@ const productCartReducers = (state = intialState, action) => {
         ],
       };
     case "ITEM_DECREMENT":
-      return {
-        ...state,
-        productCart: state.productCart.map((item) =>
-          item.id === action.product.id
-            ? {
-                ...item,
-                qty: item.qty - 1,
-              }
-            : item
-        ),
-      };
+      const findItem = state.productCart.filter(
+        (item) => item?.id === action.product.id
+      );
+      console.log("findItem", findItem);
+      if (findItem[0].qty > 1) {
+        return {
+          ...state,
+          productCart: state.productCart.map((item) =>
+            item.id === action.product.id
+              ? {
+                  ...item,
+                  qty: item.qty - 1,
+                }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          productCart: state.productCart.filter(
+            (item) => item.id !== action.product.id
+          ),
+        };
+      }
+
     case "REMOVE_ALL_ITEMS":
       return intialState;
     default:
