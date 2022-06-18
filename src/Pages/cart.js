@@ -2,7 +2,7 @@ import Header from "../Components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeAllItems } from "../Actions/removeAllItems";
-import { incrementItem } from "../Actions/incrementItem";
+import emptyImage from "../Images/empty_image.png";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -10,6 +10,7 @@ const Cart = () => {
   const CartItemList = useSelector(
     (state) => state.productCartReducers.productCart
   );
+  const countCartItem = CartItemList?.length;
   return (
     <>
       <Header />
@@ -22,45 +23,53 @@ const Cart = () => {
         >
           Add Item to cart
         </button>
-        <button
-          className="add-button"
-          onClick={() => {
-            dispatch(removeAllItems());
-          }}
-        >
-          Rmove all items
-        </button>
+        {countCartItem > 0 && (
+          <button
+            className="add-button"
+            onClick={() => {
+              dispatch(removeAllItems());
+            }}
+          >
+            Rmove all items
+          </button>
+        )}
       </div>
-      <div className="cart-container">
-        <ul className="cartitem-list">
-          <div className="cart-header">
-            <h3 className="cart-heading">Groceries Basket : 20 </h3>
-            <span className="cart-heading">₹ 2000 </span>
+      {countCartItem > 0 ? (
+        <div className="cart-container">
+          <ul className="cartitem-list">
+            <div className="cart-header">
+              <h3 className="cart-heading">Groceries Basket : 20 </h3>
+              <span className="cart-heading">₹ 2000 </span>
+            </div>
+            {CartItemList.map((item, index) => {
+              return (
+                <li className="cart-item" key={index}>
+                  <div className="left-image">
+                    <img src={item?.productimgUrl} alt="product-image" />
+                  </div>
+                  <div className="right-block">
+                    <p className="product-para">{item?.name}</p>
+                    <span className="price">Price : ₹ {item?.price} </span>
+                    <span className="mrp">MRP : ₹ {item?.mrp}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="rightBlock">
+            <h3 className="cart-heading">Payment Details </h3>
+            <div className="flex">
+              <span>Total Amount:</span>
+              <span className="price">₹ 1200</span>
+            </div>
+            <button className="add-button">Place Order</button>
           </div>
-          {CartItemList.map((item, index) => {
-            return (
-              <li className="cart-item" key={index}>
-                <div className="left-image">
-                  <img src={item?.productimgUrl} alt="product-image" />
-                </div>
-                <div className="right-block">
-                  <p className="product-para">{item?.name}</p>
-                  <span className="price">Price : ₹ {item?.price} </span>
-                  <span className="mrp">MRP : ₹ {item?.mrp}</span>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <div className="rightBlock">
-          <h3 className="cart-heading">Payment Details </h3>
-          <div className="flex">
-            <span>Total Amount:</span>
-            <span className="price">₹ 1200</span>
-          </div>
-          <button className="add-button">Place Order</button>
         </div>
-      </div>
+      ) : (
+        <div className="empty-block">
+          <img src={emptyImage} alt="empty-card-image"></img>
+        </div>
+      )}
     </>
   );
 };

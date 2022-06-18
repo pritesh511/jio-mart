@@ -272,3 +272,9 @@
   justify-content: center;
   background-color: #008ecc;
 }
+.empty-block{
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
