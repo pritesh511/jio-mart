@@ -35,7 +35,6 @@ const productCartReducers = (state = intialState, action) => {
       const findItem = state.productCart.filter(
         (item) => item?.id === action.product.id
       );
-      console.log("findItem", findItem);
       if (findItem[0].qty > 1) {
         return {
           ...state,
