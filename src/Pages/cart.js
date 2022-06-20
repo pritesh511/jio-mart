@@ -15,6 +15,14 @@ const Cart = () => {
       (item) => item?.userEmail === curentUserEmail
     )
   );
+  const countQty = CartItemList?.reduce((a, b) => a + b?.qty, 0);
+
+  const price = CartItemList?.reduce((a, b) => a + b?.qty * b?.price, 0);
+
+  const mrpPrice = CartItemList?.reduce((a, b) => a + b?.qty * b?.mrp, 0);
+
+  const saveAmount = mrpPrice - price;
+
   const countCartItem = CartItemList?.length;
   return (
     <>
@@ -43,8 +51,8 @@ const Cart = () => {
         <div className="cart-container">
           <ul className="cartitem-list">
             <div className="cart-header">
-              <h3 className="cart-heading">Groceries Basket : 20 </h3>
-              <span className="cart-heading">₹ 2000 </span>
+              <h3 className="cart-heading">Groceries Basket : {countQty} </h3>
+              <span className="cart-heading">₹ {price} </span>
             </div>
             {CartItemList.map((item, index) => {
               return (
@@ -83,9 +91,14 @@ const Cart = () => {
           <div className="rightBlock">
             <h3 className="cart-heading">Payment Details </h3>
             <div className="flex">
-              <span>Total Amount:</span>
-              <span className="price">₹ 1200</span>
+              <span>Total MRP:</span>
+              <span className="price">₹ {mrpPrice}</span>
             </div>
+            <div className="flex">
+              <span>Total Price:</span>
+              <span className="price">₹ {price}</span>
+            </div>
+            <span className="save-text">you save {saveAmount}</span>
             <button className="add-button">Place Order</button>
           </div>
         </div>
