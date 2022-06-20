@@ -15,7 +15,6 @@ const Cart = () => {
       (item) => item?.userEmail === curentUserEmail
     )
   );
-  const countQty = CartItemList?.reduce((a, b) => a + b?.qty, 0);
 
   const price = CartItemList?.reduce((a, b) => a + b?.qty * b?.price, 0);
 
@@ -51,7 +50,9 @@ const Cart = () => {
         <div className="cart-container">
           <ul className="cartitem-list">
             <div className="cart-header">
-              <h3 className="cart-heading">Groceries Basket : {countQty} </h3>
+              <h3 className="cart-heading">
+                Groceries Basket : {CartItemList?.length}{" "}
+              </h3>
               <span className="cart-heading">₹ {price} </span>
             </div>
             {CartItemList.map((item, index) => {
