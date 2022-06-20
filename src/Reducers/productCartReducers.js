@@ -62,13 +62,21 @@ const productCartReducers = (state = intialState, action) => {
         return {
           ...state,
           cart: state.cart?.filter(
-            (item) => item?.id !== action.payload.product?.id
+            (item) =>
+              item?.id !== action.payload.product?.id &&
+              item?.userEmail === action.payload.userEmail
           ),
         };
       }
 
     case "REMOVE_ALL_ITEMS":
-      return intialState;
+      const cart = state.cart?.filter(
+        (item) => item?.userEmail !== action.payload
+      );
+      return {
+        ...state,
+        cart: cart,
+      };
     default:
       return state;
   }

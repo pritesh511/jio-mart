@@ -32,7 +32,7 @@ const Cart = () => {
           <button
             className="add-button"
             onClick={() => {
-              dispatch(removeAllItems());
+              dispatch(removeAllItems(curentUserEmail));
             }}
           >
             Rmove all items
