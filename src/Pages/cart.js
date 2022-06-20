@@ -10,7 +10,11 @@ const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
-  const CartItemList = useSelector((state) => state.productCartReducers.cart);
+  const CartItemList = useSelector((state) =>
+    state.productCartReducers.cart.filter(
+      (item) => item?.userEmail === curentUserEmail
+    )
+  );
   const countCartItem = CartItemList?.length;
   return (
     <>
