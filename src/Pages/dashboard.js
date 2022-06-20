@@ -24,7 +24,7 @@ const Dashboard = () => {
       <Header />
       <div className="product-container">
         <div className="prduct-block">
-          {CartItemList.map((item, index) => {
+          {CartItemList?.map((item, index) => {
             return (
               <div className="product-wrap" key={index}>
                 <div className="product-up">

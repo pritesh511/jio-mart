@@ -21,10 +21,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
-  const CartItem = useSelector(
-    (state) => state.productCartReducers.cart
-  ).filter((item) => item?.userEmail === curentUserEmail);
-  const countCartItem = CartItem?.length;
+  const CartItem = useSelector((state) => state.productCartReducers.cart);
+  const userCartData = CartItem?.filter(
+    (item) => item?.userEmail === curentUserEmail
+  );
+  const countCartItem = userCartData?.length;
   return (
     <>
       <div className="header">
