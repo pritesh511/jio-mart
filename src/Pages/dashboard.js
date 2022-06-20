@@ -34,6 +34,7 @@ const Dashboard = () => {
                   <p className="product-para">{item?.name}</p>
                   <span className="price">Price : ₹ {item?.price} </span>
                   <span className="mrp">MRP : ₹ {item?.mrp}</span>
+                  <span className="amount_save"></span>
                   {item?.qty < 1 ? (
                     <button
                       className="add-button"

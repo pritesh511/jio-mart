@@ -63,8 +63,10 @@ const Cart = () => {
                   </div>
                   <div className="right-block">
                     <p className="product-para">{item?.name}</p>
-                    <span className="price">Price : ₹ {item?.price} </span>
-                    <span className="mrp">MRP : ₹ {item?.mrp}</span>
+                    <span className="price">
+                      Price : ₹ {item?.price * item?.qty}{" "}
+                    </span>
+                    <span className="mrp">MRP : ₹ {item?.mrp * item?.qty}</span>
                     <div className="btn-group">
                       <div
                         className="btn"

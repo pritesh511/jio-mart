@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { currentUser } from "../Actions/currentUser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,9 +29,14 @@ const Login = () => {
       (item, index) =>
         item?.email === userInfo?.email && item?.password && userInfo?.password
     );
+    console.log("isUsercheck", isUserCheck);
+    if (isUserCheck?.length === 0) {
+      toast("Email And Password not found");
+    }
     dispatch(currentUser(userInfo));
     if (isUserCheck?.length === 1) {
       navigate("/dashboard");
+    } else {
     }
     setUserInfo({
       email: "",
@@ -71,6 +78,11 @@ const Login = () => {
             </div>
             <button className="button">Log In</button>
           </form>
+          <ToastContainer
+            autoClose={5000}
+            type="error"
+            hideProgressBar={false}
+          />
           <div className="last-line">
             Are You New User Then SignUp Here <Link to="/signup">SignUp</Link>
           </div>
