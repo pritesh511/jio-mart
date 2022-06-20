@@ -1,18 +1,26 @@
 const intialState = {
   productCart: [],
+  cart: [],
 };
 
 const productCartReducers = (state = intialState, action) => {
   switch (action.type) {
+    case "LOAD_PRODUCT":
+      return {
+        ...state,
+        productCart: action.payload,
+      };
     case "ADD_TO_CART":
-      const isInCart = state.productCart.some(
-        (item) => item.id === action.product.id
+      const isInCart = state.cart?.some(
+        (item) =>
+          item?.id === action.payload.product?.id &&
+          item?.userEmail === action.payload.userEmail
       );
       if (isInCart) {
         return {
           ...state,
-          productCart: state.productCart.map((item) =>
-            item.id === action.product.id
+          cart: state.cart.map((item) =>
+            item.id === action.payload.product.id
               ? {
                   ...item,
                   qty: item.qty + 1,
@@ -23,23 +31,26 @@ const productCartReducers = (state = intialState, action) => {
       }
       return {
         ...state,
-        productCart: [
-          ...state.productCart,
+        cart: [
+          ...state.cart,
           {
-            ...action.product,
+            ...action.payload.product,
             qty: 1,
+            userEmail: action.payload.userEmail,
           },
         ],
       };
     case "ITEM_DECREMENT":
-      const findItem = state.productCart.filter(
-        (item) => item?.id === action.product.id
+      const findItem = state.cart?.filter(
+        (item) =>
+          item?.id === action.payload.product?.id &&
+          item?.userEmail === action.payload.userEmail
       );
       if (findItem[0].qty > 1) {
         return {
           ...state,
-          productCart: state.productCart.map((item) =>
-            item.id === action.product.id
+          cart: state.cart.map((item) =>
+            item.id === action.payload.product.id
               ? {
                   ...item,
                   qty: item.qty - 1,
@@ -50,8 +61,8 @@ const productCartReducers = (state = intialState, action) => {
       } else {
         return {
           ...state,
-          productCart: state.productCart.filter(
-            (item) => item.id !== action.product.id
+          cart: state.cart?.filter(
+            (item) => item?.id !== action.payload.product?.id
           ),
         };
       }

@@ -9,9 +9,8 @@ import { decrementItem } from "../Actions/decrementItem";
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const CartItemList = useSelector(
-    (state) => state.productCartReducers.productCart
-  );
+  const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
+  const CartItemList = useSelector((state) => state.productCartReducers.cart);
   const countCartItem = CartItemList?.length;
   return (
     <>
@@ -57,7 +56,7 @@ const Cart = () => {
                       <div
                         className="btn"
                         onClick={() => {
-                          dispatch(productCart(item));
+                          dispatch(productCart(item, curentUserEmail));
                         }}
                       >
                         +
@@ -66,7 +65,7 @@ const Cart = () => {
                       <div
                         className="btn"
                         onClick={() => {
-                          dispatch(decrementItem(item));
+                          dispatch(decrementItem(item, curentUserEmail));
                         }}
                       >
                         -

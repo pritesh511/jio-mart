@@ -1,6 +1,6 @@
 import { Types } from "../Constants/actionTypes";
 
-export const decrementItem = (product) => ({
+export const decrementItem = (product, userEmail) => ({
   type: Types.ITEM_DECREMENT,
-  product,
+  payload: { product, userEmail },
 });

@@ -21,9 +21,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
-  const CartItem = useSelector(
-    (state) => state.productCartReducers.productCart
-  );
+  const CartItem = useSelector((state) => state.productCartReducers.cart);
   const countCartItem = CartItem?.length;
   return (
     <>
