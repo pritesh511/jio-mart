@@ -6,13 +6,14 @@ const placeOrderReducer = (state = initalState, action) => {
   switch (action.type) {
     case "PLACE_ORDER":
       return {
-        orderItems: action.payload.orderList,
+        orderItems: [...state.orderItems, ...action.payload.orderList],
       };
     case "COMPLETE_ORDER":
+      const order_data = state.orderItems?.filter(
+        (item) => item?.userEmail !== action.payload
+      );
       return {
-        orderItems: state.orderItems?.filter(
-          (item) => item?.userEmail !== action.payload
-        ),
+        orderItems: order_data,
       };
     default:
       return state;

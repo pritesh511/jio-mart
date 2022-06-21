@@ -30,10 +30,12 @@ const Header = () => {
     <>
       <div className="header">
         <div>
-          <img
-            src="https://www.jiomart.com/assets/version16548039193/smartweb/images/jiomart_logo_beta.svg"
-            alt="icon"
-          />
+          <Link to="/dashboard">
+            <img
+              src="https://www.jiomart.com/assets/version16548039193/smartweb/images/jiomart_logo_beta.svg"
+              alt="icon"
+            />
+          </Link>
         </div>
         <ul className="header-list">
           <li>

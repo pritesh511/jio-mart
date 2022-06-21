@@ -13,9 +13,13 @@ const Order = () => {
       (item) => item?.userEmail === curentUserEmail
     )
   );
-  const price = orderList?.reduce((a, b) => a + b?.price, 0);
-  const mrp = orderList?.reduce((a, b) => a + b?.mrp, 0);
+
+  const price = orderList?.reduce((a, b) => a + b?.price * b?.qty, 0);
+
+  const mrp = orderList?.reduce((a, b) => a + b?.mrp * b?.qty, 0);
+
   const save_amount = mrp - price;
+
   const isOrderItem = orderList?.length;
 
   return (
@@ -31,17 +35,17 @@ const Order = () => {
                 dispatch(completeOrder(curentUserEmail));
               }}
             >
-              Get Your Order
+              Complete Order
             </button>
           </div>
           <table className="order-table">
             <thead>
-              <th>product-image</th>
-              <th>product</th>
-              <th>qty</th>
+              <th>Product-image</th>
+              <th>Product</th>
+              <th>Qty</th>
               <th>MRP</th>
-              <th>price</th>
-              <th>amount</th>
+              <th>Price</th>
+              <th>Amount</th>
             </thead>
             <tbody>
               {orderList?.map((item, index) => {
