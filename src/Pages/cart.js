@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { removeAllItems } from "../Actions/removeAllItems";
 import emptyImage from "../Images/empty_image.png";
 import { decrementItem } from "../Actions/decrementItem";
+import { placeOrder } from "../Actions/placeOrder";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -102,7 +103,15 @@ const Cart = () => {
               <span className="price">₹ {price}</span>
             </div>
             <span className="save-text">you save {saveAmount}</span>
-            <button className="add-button">Place Order</button>
+            <button
+              className="add-button"
+              onClick={() => {
+                dispatch(placeOrder(CartItemList, curentUserEmail));
+                dispatch(removeAllItems(curentUserEmail));
+              }}
+            >
+              Place Order
+            </button>
           </div>
         </div>
       ) : (

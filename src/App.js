@@ -5,6 +5,7 @@ import Login from "./Pages/login";
 import Dashboard from "./Pages/dashboard";
 import { useSelector } from "react-redux";
 import Cart from "./Pages/cart";
+import Order from "./Pages/order";
 
 const App = () => {
   const curentUserStatus = useSelector(
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
           )}
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
         </Routes>
       </Router>
     </>

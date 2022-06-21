@@ -52,6 +52,11 @@ const Header = () => {
             </Link>
           </li>
           <li>
+            <Link to="/order" className="order-btn">
+              My Order
+            </Link>
+          </li>
+          <li>
             <div
               className="logout-icon"
               onClick={() => {
