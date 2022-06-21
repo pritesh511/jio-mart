@@ -7,6 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../Actions/logOut";
 import { useNavigate, Link } from "react-router-dom";
+import { handleSearch } from "../Pages/dashboard";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -17,7 +18,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const curentUserEmail = useSelector((state) => state.CurretUserReducer.email);
@@ -37,6 +38,7 @@ const Header = () => {
             />
           </Link>
         </div>
+        {children}
         <ul className="header-list">
           <li>
             <div className="user-icon">

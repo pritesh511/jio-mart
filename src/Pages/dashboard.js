@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productCart } from "../Actions/addToCart";
 import { decrementItem } from "../Actions/decrementItem";
@@ -7,6 +7,7 @@ import Header from "../Components/header";
 import { products } from "../Data/productData";
 
 const Dashboard = () => {
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,12 +20,27 @@ const Dashboard = () => {
     (state) => state.productCartReducers.productCart
   );
 
+  const filterData = search
+    ? CartItemList?.filter((item) => {
+        return item?.name.toLowerCase().match(search);
+      })
+    : CartItemList;
+
   return (
     <>
-      <Header />
+      <Header>
+        <input
+          className="filter-input"
+          type="text"
+          placeholder="search product Here"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
+      </Header>
       <div className="product-container">
         <div className="prduct-block">
-          {CartItemList?.map((item, index) => {
+          {filterData?.map((item, index) => {
             return (
               <div className="product-wrap" key={index}>
                 <div className="product-up">

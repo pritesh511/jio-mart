@@ -309,7 +309,7 @@
   border: none;
 }
 .order-wrap{
-  height: 91vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,4 +364,21 @@ margin: 0;
 .order-header button{
   width: 200px;
   margin: 0;
+}
+.filter-input{
+  flex: 1 1 0;
+  margin: 0 50px;
+  padding: 8px 12px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+}
+.filter-input::placeholder{
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
 }
