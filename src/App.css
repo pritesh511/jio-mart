@@ -85,6 +85,8 @@
   justify-content: space-between;
   padding: 12px 24px;
   background-color: #008ecc;
+  position: sticky;
+  top: 0;
 }
 .header-list {
   display: flex;
