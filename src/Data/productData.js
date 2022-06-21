@@ -99,4 +99,44 @@ export const products = [
     qty: 0,
     userEmail: "",
   },
+  {
+    id: 11,
+    name: "Tata Agni Tea 1 kg",
+    productimgUrl:
+      "https://www.jiomart.com/images/product/150x150/490004178/tata-agni-tea-1-kg-product-images-o490004178-p490004178-0-202203170913.jpg",
+    mrp: 240,
+    price: 195,
+    qty: 0,
+    userEmail: "",
+  },
+  {
+    id: 12,
+    name: "Maaza Mango Drink 600 ml",
+    productimgUrl:
+      "https://www.jiomart.com/images/product/150x150/490001797/maaza-mango-drink-600-ml-product-images-o490001797-p490001797-0-202203151523.jpg",
+    mrp: 38,
+    price: 34,
+    qty: 0,
+    userEmail: "",
+  },
+  {
+    id: 13,
+    name: "Capital Kitchenware Plastic Double Wall Vacuum Tea Cup With Lid 150 ml (Set of 3)",
+    productimgUrl:
+      "https://www.jiomart.com/images/product/150x150/rvhgj8wcse/capital-kitchenware-pack-of-1-plastic-tea-time-cup-with-lid-unbreakable-material-product-images-orvhgj8wcse-p590628847-0-202108312054.jpg",
+    mrp: 599,
+    price: 379,
+    qty: 0,
+    userEmail: "",
+  },
+  {
+    id: 14,
+    name: "Swisstyle Blue Dial Analog Watch for Men",
+    productimgUrl:
+      "https://www.jiomart.com/images/product/330x410/rvyzkgkgwv/swisstyle-blue-dial-analog-watch-for-men-product-images-rvyzkgkgwv-0-202205052008.jpg",
+    mrp: 1999,
+    price: 379,
+    qty: 0,
+    userEmail: "",
+  },
 ];
